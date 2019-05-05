@@ -1,3 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="cases">Cases</button>
+      <mat-menu #cases="matMenu">
+        <button mat-menu-item>View Cases</button>
+        <button mat-menu-item>Add Case</button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="victims">Victims</button>
+      <mat-menu #victims="matMenu">
+        <button mat-menu-item>View Victims</button>
+        <button mat-menu-item>Add Victim</button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-container">
+    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+      <ion-router-outlet></ion-router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </ion-app>
