@@ -1,10 +1,11 @@
+import { DynamicFormService } from './services/dynamic-form.service';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
+  imports: [],
+  providers: [
+    DynamicFormService
   ]
 })
 export class SharedModule { }

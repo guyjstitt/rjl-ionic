@@ -1,34 +1,117 @@
-import { Case } from './../shared/models/case.model';
-import { Page } from './../shared/models/page.model';
-import { Component } from '@angular/core';
+import { DynamicFormService } from './../shared/services/dynamic-form.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  // page = new Page();
-  // rows = new Array<Case>();
+export class HomePage implements OnInit {
+  public config: any = [
+    // [
+    //   {
+    //     name: 'control-one',
+    //     formType: 'formControl',
+    //     type: 'input'
+    //   },
+    //   {
+    //     name: 'control-two',
+    //     formType: 'formControl',
+    //     type: 'input',
+    //     validators: ['required']
+    //   }
+    // ],
+    // [
+    //   {
+    //     name: 'row-two-control-one',
+    //     formType: 'formControl',
+    //     type: 'input'
+    //   },
+    //   {
+    //     name: 'row-two-control-two',
+    //     formType: 'formControl',
+    //     type: 'input',
+    //     validators: ['required']
+    //   }
+    // ],
+    // [
+    //   {
+    //     name: 'group-one',
+    //     formType: 'formGroup',
+    //     controls: [
+    //       {
+    //         name: 'group-one-control-one',
+    //         formType: 'formControl',
+    //         type: 'input'
+    //       },
+    //       {
+    //         name: 'group-one-control-two',
+    //         formType: 'formControl',
+    //         type: 'input'
+    //       },
+    //       {
+    //         name: 'group-one-nested-group',
+    //         formType: 'formGroup',
+    //         controls: [
+    //           {
+    //             name: 'nested-group-control-one',
+    //             formType: 'formControl',
+    //             type: 'input'
+    //           }
+    //         ]
+    //       }
+    //     ]
+    //   }
+    // ],
+    [
+      {
+        name: 'array-one',
+        formType: 'formArray',
+        controls: [
+          {
+            name: 'array-group-one',
+            formType: 'formGroup',
+            controls: [
+              {
+                name: 'array-control-one',
+                formType: 'formControl',
+                type: 'input'
+              },
+              {
+                name: 'array-control-two',
+                formType: 'formControl',
+                type: 'input'
+              }
+            ]
+          },
+          {
+            name: 'array-group-two',
+            formType: 'formGroup',
+            controls: [
+              {
+                name: 'array-two-control-one',
+                formType: 'formControl',
+                type: 'input'
+              },
+              {
+                name: 'array-two-control-two',
+                formType: 'formControl',
+                type: 'input'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ];
 
-  // constructor() {
-  //   this.page.pageNumber = 0;
-  //   this.page.size = 20;
-  // }
+  constructor(
+    public dynamicFormService: DynamicFormService
+  ) {}
 
-  // ngOnInit() {
-  //   this.setPage({ offset: 0 });
-  // }
+  ngOnInit() {
+    let formGroup = this.dynamicFormService.generateForm(this.config);
 
-  // /**
-  //  * Populate the table with new data based on the page number
-  //  * @param page The page to select
-  //  */
-  // setPage(pageInfo) {
-  //   // this.page.pageNumber = pageInfo.offset;
-  //   // this.serverResultsService.getResults(this.page).subscribe(pagedData => {
-  //   //   this.page = pagedData.page;
-  //   //   this.rows = pagedData.data;
-  //   // });
-  // }
+    console.log('group', formGroup.value);
+  }
 }
