@@ -1,0 +1,8 @@
+{{ dynamicForm.value | json }}
+<div [formGroup]="dynamicForm">
+  <ng-container [ngSwitch]="config.type">
+    <ion-col *ngSwitchCase="'input'">
+      <input formControlName="{{config.name}}" [name]="config.name">
+    </ion-col>
+  </ng-container>
+</div>

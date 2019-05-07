@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { DynamicFormService } from './../shared/services/dynamic-form.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  public formGroup: FormGroup;
   public config: any = [
     // [
     //   {
@@ -63,55 +65,63 @@ export class HomePage implements OnInit {
     //     ]
     //   }
     // ],
+    // [
+    //   {
+    //     name: 'array-one',
+    //     formType: 'formArray',
+    //     controls: [
+    //       {
+    //         name: 'array-group-one',
+    //         formType: 'formGroup',
+    //         controls: [
+    //           {
+    //             name: 'array-control-one',
+    //             formType: 'formControl',
+    //             type: 'input'
+    //           },
+    //           {
+    //             name: 'array-control-two',
+    //             formType: 'formControl',
+    //             type: 'input'
+    //           }
+    //         ]
+    //       },
+    //       {
+    //         name: 'array-group-two',
+    //         formType: 'formGroup',
+    //         controls: [
+    //           {
+    //             name: 'array-two-control-one',
+    //             formType: 'formControl',
+    //             type: 'input'
+    //           },
+    //           {
+    //             name: 'array-two-control-two',
+    //             formType: 'formControl',
+    //             type: 'input'
+    //           }
+    //         ]
+    //       }
+    //     ]
+    //   }
+    // ]
     [
       {
-        name: 'array-one',
-        formType: 'formArray',
-        controls: [
-          {
-            name: 'array-group-one',
-            formType: 'formGroup',
-            controls: [
-              {
-                name: 'array-control-one',
-                formType: 'formControl',
-                type: 'input'
-              },
-              {
-                name: 'array-control-two',
-                formType: 'formControl',
-                type: 'input'
-              }
-            ]
-          },
-          {
-            name: 'array-group-two',
-            formType: 'formGroup',
-            controls: [
-              {
-                name: 'array-two-control-one',
-                formType: 'formControl',
-                type: 'input'
-              },
-              {
-                name: 'array-two-control-two',
-                formType: 'formControl',
-                type: 'input'
-              }
-            ]
-          }
-        ]
+        name: 'first-control',
+        formType: 'formControl',
+        type: 'input'
       }
     ]
   ];
 
   constructor(
+    public fb: FormBuilder,
     public dynamicFormService: DynamicFormService
   ) {}
 
   ngOnInit() {
-    let formGroup = this.dynamicFormService.generateForm(this.config);
+   this.formGroup = this.dynamicFormService.generateForm(this.config);
 
-    console.log('group', formGroup.value);
+    console.log('group', this.formGroup.value);
   }
 }

@@ -1,0 +1,25 @@
+<ng-container *ngFor="let column of config">
+  <ng-container [ngSwitch]="column.formType">
+    <ng-container *ngSwitchCase="'formGroup'">
+      <ion-col>
+        <div formGroupName="{{dynamicForm.get(column.name)}}">
+          <ng-container *ngFor="let control of dynamicForm.get(column.name).controls">
+            <app-form-switch [dynamicForm]="dynamicForm.get(control.name)" [config]="column"></app-form-switch>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ng-container>
+    <ng-container *ngSwitchCase="'formArray'">
+      <ion-col>
+        <div formArrayName="{{dynamicForm.get(column.name)}}">
+          <ng-container *ngFor="let control of dynamicForm.get(column.name).controls; let i = index;">
+            <app-form-switch [dynamicForm]="i" [config]="column"></app-form-switch>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ng-container>
+    <ion-col *ngSwitchCase="'formControl'">
+      <app-form-control-switch [dynamicForm]="dynamicForm" [control]="dynamicForm.get(column.name)" [config]="column"></app-form-control-switch>
+    </ion-col>
+  </ng-container>
+</ng-container>

@@ -1,3 +1,31 @@
-<p>
-  dynamic-form works!
-</p>
+<!-- 
+  [
+    name: 'my-group'
+    formType: 'formGroup'
+    controls: [
+      {
+        name: 'my-control',
+        formType: 'control',
+        inputType: 'input' 
+      },
+      {
+        name: 'my-child-group',
+        formType: 'formGroup',
+        controls: [
+          {
+            name: 'my-child-control'
+            formType: 'control',
+            inputType: 'input'
+          }
+        ]
+      }
+    ]
+  ] -->
+  <ion-grid [formGroup]="dynamicForm">
+    <!-- loop through the server config to define the rows -->
+    <ion-row *ngFor="let control of config">
+      <!-- get the top level form group/array/control using config name -->
+      {{ control | json }}
+      <app-form-switch [dynamicForm]="dynamicForm" [config]="control"></app-form-switch>
+    </ion-row>
+  </ion-grid>

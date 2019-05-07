@@ -2,3 +2,6 @@
   [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true"
   [count]="page.totalElements" [offset]="page.pageNumber" [limit]="page.size" (page)='setPage($event)'>
 </ngx-datatable> -->
+
+
+<app-dynamic-form [dynamicForm]="formGroup" [config]="config"></app-dynamic-form>

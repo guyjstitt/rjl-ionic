@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { DynamicFormService } from './../../services/dynamic-form.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -6,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dynamic-form.component.scss'],
 })
 export class DynamicFormComponent implements OnInit {
+  @Input() dynamicForm: FormGroup;
+  @Input() config: any;
 
   constructor() { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    console.log('dynamic form top', this.dynamicForm);
+  }
 }
